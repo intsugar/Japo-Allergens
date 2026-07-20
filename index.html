@@ -126,6 +126,12 @@
   .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:100;align-items:center;justify-content:center;cursor:zoom-out;padding:18px}
   .lightbox.on{display:flex}
   .lightbox img{max-width:min(94vw,760px);max-height:86vh;border-radius:14px;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+  .pair-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;padding:2px 0}
+  .pair-toggle h4{margin:0}
+  .pair-toggle .pair-chev{transition:transform .25s ease;width:14px;height:14px}
+  .pair-toggle.open .pair-chev{transform:rotate(180deg)}
+  .pair-wrap{display:none}
+  .pair-toggle.open + .pair-wrap{display:block}
   .pair{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:6px}
   .pair b{font-weight:600}
   .note{background:var(--amber-bg);color:var(--amber-ink);border-radius:10px;padding:10px 12px;font-size:12.5px;margin-top:10px}
@@ -849,11 +855,13 @@ function cardHtml(item, term){
     + '</div><div class="card-body">' + thumb + note
     + '<div class="sec"><h4>' + T("ing") + '</h4><div class="ing">' + ings + '</div></div>'
     + '<div class="sec"><h4>' + T("alg") + '</h4><table class="alg">' + rows + '</table></div>'
-    + '<div class="sec"><h4>' + T("pairT") + '</h4>'
+    + '<div class="sec">'
+    + '<div class="pair-toggle" onclick="this.classList.toggle(\'open\')"><h4>' + T("pairT") + '</h4><svg class="pair-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>'
+    + '<div class="pair-wrap">'
     + '<div class="pair">🥂 <b>' + T("w") + ':</b> ' + esc(d.pair.w) + '</div>'
     + '<div class="pair">🍷 <b>' + T("r") + ':</b> ' + esc(d.pair.r) + '</div>'
     + '<div class="pair">🍶 <b>' + T("sk") + ':</b> ' + esc(d.pair.s) + '</div>'
-    + '</div></div></div>';
+    + '</div></div></div></div>';
 }
 
 function render(){
